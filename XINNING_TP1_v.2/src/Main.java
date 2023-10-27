@@ -5,38 +5,36 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException, IndexOutOfBoundsException {
 
-        //We read user input
-        //NEED to make the case where we dont write the good thing or the file is not there
+        //We read user input.
         Scanner readInput = new Scanner(System.in); //obj of scanner that takes inputs
 
-        //With the he constr takes the input, we read it and store it in filepath
+        //With the scanner takes the input, we read it and store it in filepath.
         System.out.println("Enter file name : ");
-        //we make a string that takes the input
+        //we make a String filepath that takes the input.
         String filePath = readInput.next(); 
         readInput.close();
 
-        //We make an obj of bufferedReader to begin reading
+        //We make an obj of bufferedReader to begin reading the inputed file.
         BufferedReader objBr = new BufferedReader(new FileReader(filePath));
         
-        //We initiate the query value BEFORE THE LOOP (let's not make that mistake again)
+        //We initiate the query value before the loop.
         int queryValue = 1;
         
         boolean b = objBr.ready();
         //True while we can still read the file
         while ( b ) {
-        	//We print the query IN THE LOOP
+        	//We print the query in the loop.
             System.out.println("Query " + queryValue +":");
-            //We increment the query value at each steps
+            //We increment the query value at each step.
             queryValue += 1;
 
-            //We make a 2d list
-            //we want it to take each line of the txt file that correspond to the matrix
-        	//But we changed the code now so idk how much better it makes the code
+            //We make a 2d list.
+            //We want it to take each line of the txt file as a list
+            //and then combine that into another list to correspond to the matrix.
             Structures objMatrice = new Structures();
 
-            //Since it said in the forum that all the files are perfect, we know exactly what the first and last lines are
-            //We read one time and we store the matrix dimensions by calling Structures class that i'll use in other folders
-            //I think its better to store data as objects of a class if we're gonna use them later
+            //Since it said in the forum that all the files are perfect, we know exactly what the first and last lines are.
+            //We read one time and we store the matrix dimensions by calling Structures class that i'll use in other folder.
             String[] txtD = objBr.readLine().split(" ");
             //We call Structure to store the dimensions, we know that the first character is the nb of col
             Structures objDimensions = new Structures(txtD[0], txtD[1]);  
@@ -52,10 +50,10 @@ public class Main {
             //They are stored in Structures as an array
             Structures objMotsRecherche = new Structures( objBr.readLine().split(" ") );
             
-            //we initiate the step that we're at with the elem (i say that but i don't even remember what it does)
+            //we initiate the step that we're at with the elem.
             int etapeElem = 0;
             
-            //We loop on all the words
+            //We loop through all the words.
             for ( String elem : objMotsRecherche.motsL ) {
                 //For every words, we want to begin the search for the letters starting with the first one
                 //                 and we want to start from the index 0,0 -> c = columns, r = rows
@@ -72,7 +70,7 @@ public class Main {
 
             }
 
-            b = objBr.ready(); //-> becomes false when ther's nothing else to read
+            b = objBr.ready(); //-> becomes false when there's nothing else to read
             //So in each iteration, we read a line which is the dimensions
             //                      then we read the matrix
             //                      then we read the words to search for
